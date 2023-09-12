@@ -5,6 +5,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
+import org.testng.asserts.SoftAssert;
 
 import static com.codeborne.selenide.Configuration.*;
 
@@ -12,6 +13,8 @@ import static com.codeborne.selenide.Configuration.*;
 public class ConfigTests {
 
     private WebDriver driver;
+    protected static SoftAssert softAssert = new SoftAssert();
+
 
     @BeforeSuite
     public void setUpSuite() {
@@ -31,6 +34,6 @@ public class ConfigTests {
 
     @AfterMethod
     public void tearDown() {
-        driver.quit();
+       driver.quit();
     }
 }

@@ -1,6 +1,5 @@
 import com.codeborne.selenide.SelenideElement;
 import org.testng.annotations.*;
-import org.testng.asserts.SoftAssert;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Configuration.*;
@@ -18,34 +17,25 @@ public class CheckboxTests extends ConfigTests{
     public void checkboxes(){
         open("/checkboxes");
 
-        SoftAssert softAssert = new SoftAssert();
+        SelenideElement checkBoxesForm = $("#checkboxes");
 
-        SelenideElement checkedBox = $("#checkboxes input[type=checkbox]:checked");
-        SelenideElement uncheckedBox = $("#checkboxes input[type=checkbox]:not(:checked)");
-
-        uncheckCheckbox(checkedBox);
+        uncheckCheckbox(checkBoxesForm);
         softAssert.fail();
 
-        checkCheckbox(uncheckedBox);
+        checkCheckbox(checkBoxesForm);
         softAssert.fail();
 
         softAssert.assertAll();
     }
 
 
-    private void uncheckCheckbox(SelenideElement element) {
-        if (element.isSelected()) {
-            element.setSelected(false);
-        } else {
-            System.out.println("element is already unchecked");
-        }
+    private void uncheckCheckbox(SelenideElement form) {
+        SelenideElement input = form.$("input[type=checkbox]:checked");
+        input.setSelected(false);
     }
 
-    private void checkCheckbox(SelenideElement element) {
-        if (!element.isSelected()) {
-            element.setSelected(true);
-        } else {
-            System.out.println("element is already checked");
-        }
+    private void checkCheckbox(SelenideElement form) {
+        SelenideElement input = form.$("input[type=checkbox]:not(:checked)");
+        input.setSelected(true);
     }
 }

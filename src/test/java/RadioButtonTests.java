@@ -1,7 +1,9 @@
 import com.codeborne.selenide.SelenideElement;
 import org.testng.annotations.*;
-import org.testng.asserts.SoftAssert;
 
+import java.time.Duration;
+
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Configuration.*;
 
@@ -18,19 +20,26 @@ public class RadioButtonTests extends ConfigTests{
     public void radioButton() {
         open("/radio-button");
 
-        SoftAssert softAssert = new SoftAssert();
-
-        SelenideElement yesButton = $("label[for='yesRadio']");
-
-        yesButton.click();
+        // უშუალოდ ინფუთზე ვერ ეკლიკებოდა, მგონი css დან ზომები ისეა გაწერილი რომ ლეიბლი ზემოდან ეფარება ინფუთს
+        // და რაკი ლეიბლი ინფუთისთვისაა განკუთვნილი ირიბად ამ გზითაც ეკლიკება
+        selectYesOption("label[for='yesRadio']");
 
         softAssert.fail();
 
-        SelenideElement noButton = $("#noRadio");
-
-        softAssert.assertTrue(noButton.isEnabled());
+        checkNoOption("#noRadio");
 
         softAssert.assertAll();
+    }
+
+    private void selectYesOption(String selector) {
+        SelenideElement yesOption = $(selector);
+        yesOption.click();
+    }
+
+    private void checkNoOption(String selector) {
+        SelenideElement noRadio = $(selector);
+        //დეფოლტად რაც მიყენია timeout აქ მაგდენი არ არის საჭირო და მაგიტომ ვამცირებ
+        noRadio.should(enabled, Duration.ofSeconds(4));
     }
 
 
