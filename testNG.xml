@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="suiteOne">
+    <test name="united tests">
+        <classes>
+            <class name="CheckboxTests"/>
+            <class name="RadioButtonTests"/>
+        </classes>
+    </test>
+</suite>
