@@ -1,4 +1,5 @@
 import com.codeborne.selenide.SelenideElement;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.time.Duration;
@@ -11,14 +12,13 @@ public class RadioButtonTests extends ConfigTests{
 
     @BeforeClass
     public void setUpClass() {
-        baseUrl = "https://demoqa.com";
         reportsFolder = "src/main/resources/RadioButtonFailedTests";
     }
 
 
-    @Test
+    @Test(groups = {"FrontEnd"}, priority = 1)
     public void radioButton() {
-        open("/radio-button");
+        open("https://demoqa.com/radio-button");
 
         // უშუალოდ ინფუთზე ვერ ეკლიკებოდა, მგონი css დან ზომები ისეა გაწერილი რომ ლეიბლი ზემოდან ეფარება ინფუთს
         // და რაკი ლეიბლი ინფუთისთვისაა განკუთვნილი ირიბად ამ გზითაც ეკლიკება
@@ -29,6 +29,16 @@ public class RadioButtonTests extends ConfigTests{
         checkNoOption("#noRadio");
 
         softAssert.assertAll();
+    }
+
+    @Test(groups = {"BackEnd"}, priority = 2)
+    public void exampleTest() {
+        open("https://www.google.com/");
+
+        String actualTitle = title();
+        String expectedTitle = "Google";
+
+        Assert.assertEquals(actualTitle,expectedTitle);
     }
 
     private void selectYesOption(String selector) {
