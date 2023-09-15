@@ -1,9 +1,25 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="suiteOne">
-    <test name="united tests">
+<suite name="suiteOne" parallel="classes">
+
+    <test name="FrontEnd and BackEnd tests">
+
+        <groups>
+
+            <define name="endGroup">
+                <include name=".*End"/>
+            </define>
+
+            <run>
+                <include name="endGroup"/>
+            </run>
+
+        </groups>
+
         <classes>
             <class name="CheckboxTests"/>
             <class name="RadioButtonTests"/>
         </classes>
+
     </test>
+
 </suite>
