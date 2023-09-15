@@ -1,11 +1,12 @@
 import com.codeborne.selenide.SelenideElement;
+import common.ConfigTests;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Configuration.*;
 
-public class CheckboxTests extends ConfigTests{
+public class CheckboxTests extends ConfigTests {
 
     @BeforeClass
     public void setUpClass() {

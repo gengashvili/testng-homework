@@ -1,4 +1,5 @@
 import com.codeborne.selenide.SelenideElement;
+import common.ConfigTests;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -8,7 +9,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Configuration.*;
 
-public class RadioButtonTests extends ConfigTests{
+public class RadioButtonTests extends ConfigTests {
 
     @BeforeClass
     public void setUpClass() {
